@@ -9,8 +9,6 @@ Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "HostingPlan", "HostingPlan\
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WebApp", "WebApp\WebApp.deployproj", "{63F4F61F-236B-4E30-A704-7FAA05FA180A}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "MongoDb", "MongoDb\MongoDb.deployproj", "{14FFD127-8506-4EFE-B20C-BC30A0733854}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{63F4F61F-236B-4E30-A704-7FAA05FA180A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F4F61F-236B-4E30-A704-7FAA05FA180A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63F4F61F-236B-4E30-A704-7FAA05FA180A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14FFD127-8506-4EFE-B20C-BC30A0733854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14FFD127-8506-4EFE-B20C-BC30A0733854}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14FFD127-8506-4EFE-B20C-BC30A0733854}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14FFD127-8506-4EFE-B20C-BC30A0733854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

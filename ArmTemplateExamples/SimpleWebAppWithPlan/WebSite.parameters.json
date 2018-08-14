@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "hostingPlanName": {
-      "value": "bladie"
+      "value": "example"
     },
     "skuName": {
       "value": "S1"
