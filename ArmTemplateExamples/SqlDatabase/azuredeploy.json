@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sqlserver_name": {
+      "type": "String"
+    },
+    "database_name": {
+      "type": "String"
+    },
+    "sku_tier": {
+      "defaultValue": "Basic",
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ]
+    },
+    "sku_name": {
+      "defaultValue": "Basic",
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2"
+      ]
+    },
+    "max_size_bytes": {
+      "defaultValue": 2147483648,
+      "type": "string",
+      "allowedValues": [
+        "2147483648",
+        "268435456000"
+      ],
+      "metadata": {
+        "description": "2147483648 is the max value for Basic tiered databases, 268435456000 is the max value for Standard tiered databases up to sku S2."
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "sku": {
+        "name": "[parameters('sku_name')]",
+        "tier": "[parameters('sku_tier')]"
+      },
+      "kind": "v12.0,user",
+      "name": "[concat(parameters('sqlserver_name'), '/', parameters('database_name'))]",
+      "apiVersion": "2017-03-01-preview",
+      "location": "westeurope",
+      "scale": null,
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": "[parameters('max_size_bytes')]",
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "zoneRedundant": false
+      }
+    }
+  ]
+}

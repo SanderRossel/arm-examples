@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "HostingPlanName": {
+      "type": "string"
+    },
+    "HostingPlanResourceGroup": {
+      "type": "string"
+    },
+    "ApplicationName": {
+      "type": "string"
+    },
+    "AppInsightsName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "serverFarmId": "[concat('subscription/', subscription().id ,'/resourceGroups/', parameters('hostingPlanResourceGroup'),'/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('ApplicationName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', variables('serverFarmId'))]": "Resource",
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('ApplicationName')]",
+        "serverFarmId": "[variables('serverFarmId')]"
+      },
+      "resources": [
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('ApplicationName'))]"
+          ],
+          "properties": {
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', parameters('AppInsightsName')), '2014-04-01').InstrumentationKey]"
+          }
+        }
+      ]
+    },
+    {
+      "name": "[concat(parameters('ApplicationName'), '/web')]",
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2016-08-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', variables('ServerFarmId'))]": "empty"
+      },
+      "properties": {
+        "defaultDocuments": [],
+        "phpVersion": "",
+        "pythonVersion": "",
+        "nodeVersion": ""
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('ApplicationName'))]"
+      ]
+    }
+  ]
+}

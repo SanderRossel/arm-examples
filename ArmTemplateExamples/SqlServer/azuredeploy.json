@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ServerName": {
+      "type": "string"
+    },
+    "AdminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "AdminLoginPassword": {
+      "type": "securestring"
+    }
+  },
+  "variables": { },
+  "resources": [
+    {
+      "name": "[parameters('ServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01-preview",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "mealplans"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('AdminLogin')]",
+        "administratorLoginPassword": "[parameters('AdminLoginPassword')]"
+      },
+      "resources": [
+        {
+          "name": "AllowAllWindowsAzureIps",
+          "type": "firewallrules",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('ServerName'))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    }],
+  "outputs": {}
+}
