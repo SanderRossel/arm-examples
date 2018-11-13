@@ -22,7 +22,7 @@
       "apiVersion": "2014-04-01-preview",
       "dependsOn": [],
       "tags": {
-        "displayName": "mealplans"
+        "displayName": "[parameters('ServerName')]"
       },
       "properties": {
         "administratorLogin": "[parameters('AdminLogin')]",

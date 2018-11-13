@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "HostingPlanName": {
+      "type": "string"
+    },
+    "HostingPlanResourceGroup": {
+      "type": "string"
+    },
+    "ApplicationName": {
+      "type": "string"
+    },
+    "AppInsightsName": {
+      "type": "string"
+    },
+    "StorageAccountName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "serverFarmId": "[concat('subscription/', subscription().id ,'/resourceGroups/', parameters('HostingPlanResourceGroup'),'/providers/Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]",
+    "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "kind": "functionapp",
+      "name": "[parameters('ApplicationName')]",
+      "apiVersion": "2016-08-01",
+      "location": "[resourceGroup().location]",
+      "scale": null,
+      "properties": {
+        "enabled": true,
+        "serverFarmId": "[variables('serverFarmId')]"
+      },
+      "resources": [
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('ApplicationName'))]"
+          ],
+          "properties": {
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', parameters('AppInsightsName')), '2014-04-01').InstrumentationKey]",
+            "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-06-15').key1)]",
+            "FUNCTIONS_EXTENSION_VERSION": "~2",
+            "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+            "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-06-15').key1)]",
+            "WEBSITE_CONTENTSHARE": "[toLower(parameters('StorageAccountName'))]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "name": "[concat(parameters('ApplicationName'), '/web')]",
+      "apiVersion": "2016-08-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', variables('ServerFarmId'))]": "empty"
+      },
+      "scale": null,
+      "properties": {
+        "defaultDocuments": [],
+        "phpVersion": "",
+        "pythonVersion": "",
+        "nodeVersion": ""
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('ApplicationName'))]"
+      ]
+    }
+  ],
+  "outputs": {}
+}
