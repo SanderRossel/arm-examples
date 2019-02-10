@@ -23,20 +23,23 @@
       "name": "[parameters('StorageName')]",
       "type": "Microsoft.Storage/storageAccounts",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2016-01-01",
+      "apiVersion": "2018-02-01",
       "sku": {
         "name": "[parameters('StorageType')]"
       },
       "dependsOn": [],
       "tags": {
-        "displayName": "StorageAccount"
+        "displayName": "[parameters('StorageName')]"
       },
-      "kind": "Storage",
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true
+      },
       "resources": [
         {
           "name": "default/logs",
           "type": "blobServices/containers",
-          "apiVersion": "2018-03-01-preview",
+          "apiVersion": "2018-07-01",
           "dependsOn": [
             "[parameters('StorageName')]"
           ]
