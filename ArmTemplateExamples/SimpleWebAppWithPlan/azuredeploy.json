@@ -6,6 +6,15 @@
       "type": "string",
       "minLength": 1
     },
+    "ApplicationKind": {
+      "type": "string",
+      "defaultValue": "app",
+      "allowedValues": [
+        "app",
+        "api",
+        "mobileapp"
+      ]
+    },
     "HostingPlanName": {
       "type": "string",
       "minLength": 1
@@ -46,6 +55,7 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('HostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
+      "kind": "[parameters('ApplicationKind')]",
       "location": "[resourceGroup().location]",
       "tags": {
         "displayName": "HostingPlan"

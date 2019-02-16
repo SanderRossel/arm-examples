@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "SimpleWebAppWithPlan", "SimpleWebAppWithPlan\SimpleWebAppWithPlan.deployproj", "{E1C68C54-C2A8-4B2F-A590-56D3CDCA9962}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AppServiceWithPlan", "SimpleWebAppWithPlan\AppServiceWithPlan.deployproj", "{E1C68C54-C2A8-4B2F-A590-56D3CDCA9962}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "HostingPlan", "HostingPlan\HostingPlan.deployproj", "{BB30DF3B-1742-4BE2-AE99-D3478FA8E7C3}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WebApp", "WebApp\WebApp.deployproj", "{63F4F61F-236B-4E30-A704-7FAA05FA180A}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AppService", "WebApp\AppService.deployproj", "{63F4F61F-236B-4E30-A704-7FAA05FA180A}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "MongoDb", "MongoDb\MongoDb.deployproj", "{A059BFC2-897D-4250-AF0C-215D512B674B}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WebAppWithAppInsights", "WebAppWithAppInsights\WebAppWithAppInsights.deployproj", "{66399F80-901A-4ACC-9DB4-BF01D78121F8}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AppServiceWithAppInsights", "WebAppWithAppInsights\AppServiceWithAppInsights.deployproj", "{66399F80-901A-4ACC-9DB4-BF01D78121F8}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ApplicationInsights", "ApplicationInsights\ApplicationInsights.deployproj", "{909E4A01-8DFB-461B-940E-581AD9DAC02D}"
 EndProject

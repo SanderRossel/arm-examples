@@ -11,6 +11,15 @@
     "ApplicationName": {
       "type": "string"
     },
+    "ApplicationKind": {
+      "type": "string",
+      "defaultValue": "app",
+      "allowedValues": [
+        "app",
+        "api",
+        "mobileapp"
+      ]
+    },
     "AppInsightsName": {
       "type": "string"
     }
@@ -23,6 +32,7 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('ApplicationName')]",
       "type": "Microsoft.Web/sites",
+      "kind": "[parameters('ApplicationKind')]",
       "location": "[resourceGroup().location]",
       "tags": {
         "[concat('hidden-related:', variables('serverFarmId'))]": "Resource",
