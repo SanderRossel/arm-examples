@@ -25,6 +25,10 @@ Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ConsumptionPlan", "Consumpt
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "FunctionApp", "FunctionApp\FunctionApp.deployproj", "{D8A38132-7229-4E9E-A025-4268AFAABFC7}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ResourceGroup", "ResourceGroup\ResourceGroup.deployproj", "{A6665761-1FAF-42CB-A85E-7F1E592FECD3}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ServiceBus", "ServiceBus\ServiceBus.deployproj", "{2B0EB2D8-8205-44D7-9135-3B411E54DEF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{D8A38132-7229-4E9E-A025-4268AFAABFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A38132-7229-4E9E-A025-4268AFAABFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A38132-7229-4E9E-A025-4268AFAABFC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6665761-1FAF-42CB-A85E-7F1E592FECD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6665761-1FAF-42CB-A85E-7F1E592FECD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6665761-1FAF-42CB-A85E-7F1E592FECD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6665761-1FAF-42CB-A85E-7F1E592FECD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B0EB2D8-8205-44D7-9135-3B411E54DEF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0EB2D8-8205-44D7-9135-3B411E54DEF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0EB2D8-8205-44D7-9135-3B411E54DEF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0EB2D8-8205-44D7-9135-3B411E54DEF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

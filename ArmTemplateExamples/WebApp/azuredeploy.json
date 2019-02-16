@@ -2,25 +2,23 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "hostingPlanName": {
-      "defaultValue": "MySamplePlan",
+    "HostingPlanName": {
       "type": "string"
     },
-    "hostingPlanResourceGroup": {
-      "defaultValue": "imunique",
+    "HostingPlanResourceGroup": {
       "type": "string"
     },
-    "webSiteName": {
+    "ApplicationName": {
       "type": "string"
     }
   },
   "variables": {
-    "serverFarmId": "[concat('subscription/', subscription().id ,'/resourceGroups/', parameters('hostingPlanResourceGroup'),'/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+    "serverFarmId": "[concat('subscription/', subscription().id ,'/resourceGroups/', parameters('HostingPlanResourceGroup'),'/providers/Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]"
   },
   "resources": [
     {
       "apiVersion": "2015-08-01",
-      "name": "[parameters('webSiteName')]",
+      "name": "[parameters('ApplicationName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
       "tags": {
@@ -28,7 +26,7 @@
         "displayName": "Website"
       },
       "properties": {
-        "name": "[parameters('webSiteName')]",
+        "name": "[parameters('ApplicationName')]",
         "serverFarmId": "[variables('serverFarmId')]"
       }
     }

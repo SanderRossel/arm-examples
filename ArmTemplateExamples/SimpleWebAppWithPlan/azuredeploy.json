@@ -2,15 +2,15 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "appServiceName": {
+    "ApplicationName": {
       "type": "string",
       "minLength": 1
     },
-    "hostingPlanName": {
+    "HostingPlanName": {
       "type": "string",
       "minLength": 1
     },
-    "skuName": {
+    "SkuName": {
       "type": "string",
       "defaultValue": "F1",
       "allowedValues": [
@@ -31,7 +31,7 @@
         "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
       }
     },
-    "skuCapacity": {
+    "SkuCapacity": {
       "type": "int",
       "defaultValue": 1,
       "minValue": 1,
@@ -44,35 +44,35 @@
   "resources": [
     {
       "apiVersion": "2015-08-01",
-      "name": "[parameters('hostingPlanName')]",
+      "name": "[parameters('HostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
       "location": "[resourceGroup().location]",
       "tags": {
         "displayName": "HostingPlan"
       },
       "sku": {
-        "name": "[parameters('skuName')]",
-        "capacity": "[parameters('skuCapacity')]"
+        "name": "[parameters('SkuName')]",
+        "capacity": "[parameters('SkuCapacity')]"
       },
       "properties": {
-        "name": "[parameters('hostingPlanName')]"
+        "name": "[parameters('HostingPlanName')]"
       }
     },
     {
       "apiVersion": "2015-08-01",
-      "name": "[parameters('appServiceName')]",
+      "name": "[parameters('ApplicationName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
       "tags": {
-        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]": "Resource",
         "displayName": "Website"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]"
       ],
       "properties": {
-        "name": "[parameters('appServiceName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+        "name": "[parameters('ApplicationName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('HostingPlanName'))]"
       }
     }
   ]

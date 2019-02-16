@@ -6,7 +6,7 @@
       "type": "string",
       "minLength": 1
     },
-    "HostingPlanSkuName": {
+    "SkuName": {
       "type": "string",
       "defaultValue": "F1",
       "allowedValues": [
@@ -35,7 +35,7 @@
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-08-01",
       "sku": {
-        "name": "[parameters('HostingPlanSkuName')]"
+        "name": "[parameters('SkuName')]"
       },
       "dependsOn": [ ],
       "tags": {
