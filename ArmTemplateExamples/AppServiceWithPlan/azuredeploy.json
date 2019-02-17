@@ -55,7 +55,6 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('HostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
-      "kind": "[parameters('ApplicationKind')]",
       "location": "[resourceGroup().location]",
       "tags": {
         "displayName": "HostingPlan"
@@ -72,6 +71,7 @@
       "apiVersion": "2015-08-01",
       "name": "[parameters('ApplicationName')]",
       "type": "Microsoft.Web/sites",
+      "kind": "[parameters('ApplicationKind')]",
       "location": "[resourceGroup().location]",
       "tags": {
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]": "Resource",
